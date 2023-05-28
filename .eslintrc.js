@@ -11,7 +11,7 @@ module.exports = {
     "plugin:prettier/recommended",
     "next",
     "next/core-web-vitals",
-    "next/babel"
+
   ],
   rules: {
     semi: ["error", "always"],
