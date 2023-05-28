@@ -1,4 +1,4 @@
-import { Dispatch, Fragment, SetStateAction, useState } from "react";
+import { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { packageSchema } from "../../service/package";
@@ -6,7 +6,8 @@ import { packageSchema } from "../../service/package";
 type Props = {
   packageList: packageSchema[];
   selectedValue: packageSchema;
-  onChange: Dispatch<SetStateAction<packageSchema>>;
+  // eslint-disable-next-line no-unused-vars
+  onChange: (value: packageSchema) => void;
 };
 
 const Search = ({ packageList, selectedValue, onChange }: Props) => {
@@ -53,7 +54,7 @@ const Search = ({ packageList, selectedValue, onChange }: Props) => {
             <Combobox.Options className=" z-10 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-opacity-5 focus:outline-none sm:text-sm">
               {filteredPeople.length === 0 && query !== "" ? (
                 <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
-                  Nothing found.
+                  No se encontraron resultados
                 </div>
               ) : (
                 filteredPeople.map((item) => (

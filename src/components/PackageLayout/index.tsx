@@ -2,30 +2,15 @@ import React, { useEffect, useState } from "react";
 import Map from "@/components/Map";
 import Search from "@/components/Search";
 import { packageSchema } from "@/service/package";
-const DEFAULT_PACKAGE: packageSchema = {
-  guideNumber: "",
-  origin: "",
-  destination: "",
-  weight: 0,
-  date: new Date(),
-  statusList: [
-    {
-      type: "En sucursal",
-      date: new Date(),
-      location: {
-        lat: 19.429995,
-        lng: -99.215664,
-      },
-    },
-  ],
-};
-const defaultCenter = {
-  lat: 19.429995,
-  lng: -99.215664,
-};
+import io from "socket.io-client";
+import { DEFAULT_PACKAGE, defaultCenter } from "./constants";
+
 const PackageLayout = () => {
   const [packageList, setPackgeList] = useState<packageSchema[] | []>([]);
   const [selected, setSelected] = useState<packageSchema>(DEFAULT_PACKAGE);
+  const [packageLocation, setPackageLocation] = useState(defaultCenter);
+
+  const socket = io("http://localhost:3000");
 
   useEffect(() => {
     fetch("http://localhost:3000/api/package")
@@ -34,8 +19,30 @@ const PackageLayout = () => {
         setPackgeList(data);
       });
   }, []);
-  console.log(selected);
-  const loc = selected.statusList.pop();
+
+  useEffect(() => {
+    socket.on(
+      `newStatus-${selected.guideNumber}`,
+      (newPackage: packageSchema) => {
+        if (newPackage.guideNumber === selected.guideNumber) {
+          findLocation(newPackage);
+        }
+      }
+    );
+    return () => {
+      socket.off("actualizacionEstado");
+    };
+  }, [socket, selected]);
+
+  const onChangeSelected = (value: packageSchema) => {
+    setSelected(value);
+    findLocation(value);
+  };
+
+  const findLocation = (value: packageSchema) => {
+    const index = value.statusList.length - 1;
+    setPackageLocation(value.statusList[index].location);
+  };
 
   return (
     <>
@@ -45,9 +52,9 @@ const PackageLayout = () => {
       <Search
         packageList={packageList}
         selectedValue={selected}
-        onChange={setSelected}
+        onChange={onChangeSelected}
       />
-      <Map location={loc ? loc.location : defaultCenter} />
+      <Map location={packageLocation} />
     </>
   );
 };
