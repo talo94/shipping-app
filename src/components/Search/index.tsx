@@ -33,7 +33,7 @@ const Search = ({ packageList, selectedValue, onChange }: Props) => {
 
           <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
             <Combobox.Input
-              className="block w-full rounded-md border-0 py-1.5 pl-3 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 py-1.5 pl-3 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-tahiti-600 sm:text-sm sm:leading-6"
               displayValue={({ guideNumber }: packageSchema) => guideNumber}
               onChange={(event) => setQuery(event.target.value)}
             />
@@ -51,7 +51,7 @@ const Search = ({ packageList, selectedValue, onChange }: Props) => {
             leaveTo="opacity-0"
             afterLeave={() => setQuery("")}
           >
-            <Combobox.Options className=" z-10 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-opacity-5 focus:outline-none sm:text-sm">
+            <Combobox.Options className=" z-10 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-opacity-5 focus:outline-none sm:text-sm ">
               {filteredPeople.length === 0 && query !== "" ? (
                 <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
                   No se encontraron resultados
@@ -62,7 +62,7 @@ const Search = ({ packageList, selectedValue, onChange }: Props) => {
                     key={item.guideNumber}
                     className={({ active }) =>
                       `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                        active ? "bg-teal-600 text-white" : "text-gray-900"
+                        active ? "bg-tahiti-500 text-white" : "text-gray-900"
                       }`
                     }
                     value={item}
@@ -70,7 +70,7 @@ const Search = ({ packageList, selectedValue, onChange }: Props) => {
                     {({ selected, active }) => (
                       <>
                         <span
-                          className={`block truncate ${
+                          className={`block truncate  ${
                             selected ? "font-medium" : "font-normal"
                           }`}
                         >
