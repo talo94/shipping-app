@@ -1,15 +1,17 @@
 import React from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-const Map = () => {
+import { locationSchema } from "@/service/package";
+
+type Props = {
+  location: locationSchema;
+};
+
+const Map = ({ location: { lat, lng } }: Props) => {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
+
   const containerStyle = {
     width: "80%",
     height: "400px",
-  };
-
-  const defaultCenter = {
-    lat: 19.429995,
-    lng: -99.215664,
   };
 
   return (
@@ -17,9 +19,9 @@ const Map = () => {
       <GoogleMap
         mapContainerStyle={containerStyle}
         zoom={15}
-        center={defaultCenter}
+        center={{ lat, lng }}
       >
-        <Marker position={defaultCenter} />
+        <Marker position={{ lat, lng }} />
       </GoogleMap>
     </LoadScript>
   );

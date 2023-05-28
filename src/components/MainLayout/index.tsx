@@ -5,7 +5,7 @@ interface props {
   children: React.ReactNode;
   className?: string;
 }
-const Layout = ({ className, children }: props) => {
+const MainLayout = ({ className, children }: props) => {
   return (
     <div className={className}>
       <Header />
@@ -14,4 +14,4 @@ const Layout = ({ className, children }: props) => {
   );
 };
 
-export default Layout;
+export default MainLayout;
