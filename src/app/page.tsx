@@ -1,4 +1,6 @@
 "use client";
+import React from "react";
+
 import Map from "@/components/Map";
 import Search from "@/components/Search";
 import styles from "./page.module.css";
