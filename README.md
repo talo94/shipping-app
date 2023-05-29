@@ -4,11 +4,15 @@ Esta es una APP para realizar un seguimiento preciso de envíos de documentos. P
 
 ## Stack
  React.js - Next.js - Tailwindcss - Socket.io
+ 
+## Pruebas:
+APP: https://shipping-app-p.vercel.app/
+API: https://shipping-api-talo.herokuapp.com
 
 ## Características
 
-- Consulta de paquetes por ID.
-- Actualización del estado de los paquetes.
+- Consulta de paquetes.
+- Notificación del estado de los paquetes.
 - Registro de eventos de seguimiento.
 - Geolocalización de paquetes.
 - Comunicación en tiempo real utilizando WebSockets.
@@ -23,15 +27,16 @@ Esta es una APP para realizar un seguimiento preciso de envíos de documentos. P
    ```
 
 2. Instala las dependencias:
+  ```bash
    npm install
-
+```
 3. Configuración:
-
   Crea un archivo .env en la raíz del proyecto y configura las variables de entorno necesarias. Puedes utilizar el archivo .env.example como referencia. Para probar este proyecto en local necesitaras un  API KEY para el mapa de Google Maps.
 
 4.Iniciar el servidor:
+```bash
   npm run dev
-
+```
 5. Navega
    Abre en el navegador la siguiente url: http://localhost:3000
    
@@ -45,7 +50,8 @@ Esta es una APP para realizar un seguimiento preciso de envíos de documentos. P
  3. Al recibir una notificación desde el Api se mostrará un toast y la información de la pantalla se actualizará automaticamente:
   ![image](https://github.com/talo94/shipping-app/assets/25178778/4d9fd7e3-f138-4c9c-a4e6-7602368130ae)
 
-
+## API
+ 
 
 ## WebSocket
 
